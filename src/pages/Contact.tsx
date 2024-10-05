@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ClockIcon, MapPinIcon, PhoneIcon, MailIcon } from "lucide-react"
 
-export default function ContactPage() {
+export default function Contact() {
   return (
     <div className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">

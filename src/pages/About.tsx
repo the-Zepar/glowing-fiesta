@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,7 +14,7 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-export default function AboutPage() {
+export default function About() {
   return (
     <div className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
@@ -99,24 +98,6 @@ export default function AboutPage() {
               title="Integrity"
               description="We operate with honesty and transparency in all our dealings with customers and partners."
             />
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Join Our Team
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Are you passionate about travel and want to make a difference in
-                people's lives? We're always looking for talented individuals to
-                join our growing team.
-              </p>
-            </div>
-            <Button>View Open Positions</Button>
           </div>
         </div>
       </section>

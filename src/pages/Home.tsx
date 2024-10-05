@@ -1,15 +1,27 @@
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CalendarIcon, MapPinIcon, PlaneIcon, StarIcon, SunIcon, UtensilsIcon } from "lucide-react"
-
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  CalendarIcon,
+  MapPinIcon,
+  PlaneIcon,
+  StarIcon,
+  SunIcon,
+  UtensilsIcon,
+} from "lucide-react";
+import { destinations } from "@/constants";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-[url('/hero-background.jpg')] bg-cover bg-center">
+      <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-[url('./assets/Lalibela.jpg')] bg-cover bg-center">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -17,12 +29,16 @@ export default function Home() {
                 Discover Your Next Adventure
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl dark:text-gray-400">
-                Explore breathtaking destinations, create unforgettable memories, and experience the world like never before.
+                Explore breathtaking destinations, create unforgettable
+                memories, and experience the world like never before.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
               <form className="flex space-x-2">
-                <Input className="flex-1" placeholder="Where do you want to go?" />
+                <Input
+                  className="flex-1"
+                  placeholder="Where do you want to go?"
+                />
                 <Button type="submit">Search</Button>
               </form>
             </div>
@@ -32,35 +48,27 @@ export default function Home() {
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Popular Destinations</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+            Popular Destinations
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <DestinationCard
-              name="Paris"
-              image="/paris.jpg"
-              description="The City of Light awaits with its iconic landmarks and charming streets."
-            />
-            <DestinationCard
-              name="Bali"
-              image="/bali.jpg"
-              description="Experience tropical paradise with stunning beaches and lush landscapes."
-            />
-            <DestinationCard
-              name="New York"
-              image="/new-york.jpg"
-              description="Dive into the bustling energy of the Big Apple, where dreams come alive."
-            />
-            <DestinationCard
-              name="Tokyo"
-              image="/tokyo.jpg"
-              description="Immerse yourself in the perfect blend of tradition and futuristic innovation."
-            />
+            {destinations.map((destination, i) => (
+              <DestinationCard
+                key={i}
+                name={destination.name}
+                image={destination.image}
+                description={destination.description}
+              />
+            ))}
           </div>
         </div>
       </section>
 
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Special Offers</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+            Special Offers
+          </h2>
           <Tabs defaultValue="flights" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="flights">Flights</TabsTrigger>
@@ -130,7 +138,9 @@ export default function Home() {
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
         <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+            Why Choose Us
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard
               title="Best Price Guarantee"
@@ -159,12 +169,17 @@ export default function Home() {
                 Ready for Your Next Adventure?
               </h2>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                Sign up for our newsletter and be the first to know about exclusive deals and new destinations.
+                Sign up for our newsletter and be the first to know about
+                exclusive deals and new destinations.
               </p>
             </div>
             <div className="w-full max-w-sm space-y-2">
               <form className="flex space-x-2">
-                <Input className="flex-1" placeholder="Enter your email" type="email" />
+                <Input
+                  className="flex-1"
+                  placeholder="Enter your email"
+                  type="email"
+                />
                 <Button type="submit">Subscribe</Button>
               </form>
               <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -175,10 +190,18 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-function DestinationCard({ name, image, description }:{name:string, image:string, description:string}) {
+function DestinationCard({
+  name,
+  image,
+  description,
+}: {
+  name: string;
+  image: string;
+  description: string;
+}) {
   return (
     <Card className="overflow-hidden">
       <img
@@ -195,13 +218,23 @@ function DestinationCard({ name, image, description }:{name:string, image:string
         <p>{description}</p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full">Explore</Button>
+        <Button variant="outline" className="w-full">
+          Explore
+        </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
-function OfferCard({ title, description, icon }:{title:string, description:string, icon: any}) {
+function OfferCard({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: any;
+}) {
   return (
     <Card>
       <CardHeader>
@@ -217,10 +250,18 @@ function OfferCard({ title, description, icon }:{title:string, description:strin
         <Button className="w-full">Book Now</Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
 
-function FeatureCard({ title, description, icon }:{title:string, description:string, icon: any}) {
+function FeatureCard({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: any;
+}) {
   return (
     <Card className="text-center">
       <CardHeader>
@@ -231,5 +272,5 @@ function FeatureCard({ title, description, icon }:{title:string, description:str
         <p>{description}</p>
       </CardContent>
     </Card>
-  )
+  );
 }

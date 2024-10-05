@@ -9,40 +9,17 @@ import { MoonIcon, SunIcon, MenuIcon, XIcon, SearchIcon } from "lucide-react";
 import Fuse from "fuse.js";
 
 import { Link } from "react-router-dom";
+import { destinations } from "@/constants";
 
-interface Product {
-  id: string;
+interface Destinations {
   name: string;
   description: string;
-  price: number;
+  rating: number;
   image: string;
+  region: string;
+  attractions: string[];
 }
-
-const products: Product[] = [
-  {
-    id: "1",
-    name: "Product 1",
-    description: "Description for product 1",
-    price: 10,
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    description: "Description for product 2",
-    price: 20,
-    image: "https://picsum.photos/200/300",
-  },
-  {
-    id: "3",
-    name: "Product 3",
-    description: "Description for product 3",
-    price: 30,
-    image: "https://picsum.photos/200/300",
-  },
-];
-
-const fuse = new Fuse(products, {
+const fuse = new Fuse(destinations, {
   keys: ["name", "description"],
   threshold: 0.3,
 });
@@ -55,7 +32,7 @@ function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [searchResults, setSearchResults] = useState<Destinations[]>([]);
   const searchPopupRef = useRef(null);
 
   useEffect(() => {
@@ -79,11 +56,8 @@ function Header() {
   }, [lastScrollY]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        searchPopupRef.current &&
-        !searchPopupRef.current.contains(event.target)
-      ) {
+    const handleClickOutside = () => {
+      if (searchPopupRef.current) {
         setIsSearchFocused(false);
       }
     };
@@ -111,7 +85,7 @@ function Header() {
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           isScrolled
             ? isScrollingUp
-              ? "translate-y-0"
+              ? "translate-y-4"
               : "-translate-y-full"
             : ""
         }`}
@@ -134,7 +108,7 @@ function Header() {
                 to="/travel"
                 className="transition-colors hover:text-green-600"
               >
-              Travel
+                Travel
               </Link>
               <Link
                 to="/about"
@@ -147,6 +121,18 @@ function Header() {
                 className="transition-colors hover:text-green-600"
               >
                 Contact
+              </Link>
+              <Link
+                to="/offers"
+                className="transition-colors hover:text-green-600"
+              >
+                Offers
+              </Link>
+              <Link
+                to="/destinations"
+                className="transition-colors hover:text-green-600"
+              >
+                Destinations
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
@@ -244,7 +230,7 @@ function Header() {
                 {searchResults.length > 0 ? (
                   searchResults.map((product) => (
                     <Card
-                      key={product.id}
+                      key={product.name}
                       className="bg-white/50 dark:bg-gray-800/50 shadow-lg hover:shadow-xl transition-shadow backdrop-blur-sm"
                     >
                       <CardContent className="p-4 flex items-center space-x-4">
@@ -257,9 +243,6 @@ function Header() {
                           <h4 className="font-semibold">{product.name}</h4>
                           <p className="text-sm text-gray-500 dark:text-gray-400">
                             {product.description}
-                          </p>
-                          <p className="text-sm font-bold text-green-600">
-                            {product.price}
                           </p>
                         </div>
                       </CardContent>

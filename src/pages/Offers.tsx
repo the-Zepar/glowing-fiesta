@@ -17,7 +17,7 @@ import {
   UtensilsIcon,
 } from "lucide-react";
 
-export default function OffersPage() {
+export default function Offers() {
   return (
     <div className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32">

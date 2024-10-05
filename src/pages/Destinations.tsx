@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -15,9 +16,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { destinations } from "@/constants";
 import { MapPinIcon, StarIcon } from "lucide-react";
 
+import Fuse from "fuse.js";
+
+interface Destinations {
+  name: string;
+  description: string;
+  rating: number;
+  image: string;
+  region: string;
+  attractions: string[];
+}
+const fuse = new Fuse(destinations, {
+  keys: ["name", "description"],
+  threshold: 0.3,
+});
+
 export default function Destinations() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Destinations[]>([]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.length > 0) {
+      const results = fuse.search(query);
+      setSearchResults(results.map((result) => result.item));
+    } else {
+      setSearchResults(destinations);
+    }
+  };
   return (
     <div className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
@@ -26,7 +56,12 @@ export default function Destinations() {
             Explore Our Destinations
           </h1>
           <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <Input className="flex-1" placeholder="Search destinations" />
+            <Input
+              className="flex-1"
+              placeholder="Search destinations"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
             <Select>
               <SelectTrigger className="w-full md:w-[180px]">
                 <SelectValue placeholder="Filter by region" />
@@ -41,42 +76,15 @@ export default function Destinations() {
             </Select>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <DestinationCard
-              name="Paris, France"
-              image="/paris.jpg"
-              description="Experience the romance and charm of the City of Light."
-              rating={4.8}
-            />
-            <DestinationCard
-              name="Bali, Indonesia"
-              image="/bali.jpg"
-              description="Discover tropical paradise and rich cultural heritage."
-              rating={4.7}
-            />
-            <DestinationCard
-              name="New York City, USA"
-              image="/new-york.jpg"
-              description="Explore the vibrant metropolis that never sleeps."
-              rating={4.6}
-            />
-            <DestinationCard
-              name="Tokyo, Japan"
-              image="/tokyo.jpg"
-              description="Immerse yourself in a unique blend of tradition and innovation."
-              rating={4.9}
-            />
-            <DestinationCard
-              name="Rome, Italy"
-              image="/rome.jpg"
-              description="Walk through centuries of history in the Eternal City."
-              rating={4.7}
-            />
-            <DestinationCard
-              name="Sydney, Australia"
-              image="/sydney.jpg"
-              description="Experience the laid-back charm of this harbor city."
-              rating={4.8}
-            />
+            {searchResults.map((destination, i) => (
+              <DestinationCard
+                key={i}
+                name={destination.name}
+                image={destination.image}
+                description={destination.description}
+                rating={destination.rating}
+              />
+            ))}
           </div>
           <div className="flex justify-center mt-8">
             <Button variant="outline">Load More Destinations</Button>
