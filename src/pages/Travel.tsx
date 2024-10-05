@@ -2,6 +2,13 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PlusCircle, MinusCircle, MapPin, Hotel, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import {
   Card,
@@ -12,6 +19,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { MapPinIcon, StarIcon } from "lucide-react";
+import { destinations as destinations0 } from "@/constants";
 
 export default function Travel() {
   const [hotel, setHotel] = useState("");
@@ -76,14 +84,28 @@ export default function Travel() {
             </label>
             <div className="flex items-center">
               <MapPin className="mr-2 text-gray-500" />
-              <input
+              {/* <input
                 type="text"
                 id="destination"
                 value={currentDestination}
                 onChange={(e) => setCurrentDestination(e.target.value)}
                 className="flex-grow p-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
                 placeholder="Enter a destination"
-              />
+              /> */}
+
+              <Select onValueChange={(e) => setCurrentDestination(e)}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Select Destination" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="europe">Europe</SelectItem>
+                  {destinations0.map((destination) => (
+                    <SelectItem value={destination.name}>
+                      {destination.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <button
                 onClick={addDestination}
                 className="ml-2 bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition-colors"
@@ -220,38 +242,39 @@ export default function Travel() {
         </div>
 
         <div className="sm:w-1/2">
-          <Card className="overflow-hidden">
-            <img
-              src={"ldjfjd"}
-              alt={"exdfsjdfl"}
-              width={400}
-              height={200}
-              className="object-cover w-full h-48"
-            />
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <span>Lalibela</span>
-                <span className="flex items-center text-yellow-500">
-                  <StarIcon className="w-5 h-5 mr-1" />
-                  {4.8}
-                </span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Accusamus ab id officiis eius velit obcaecati cupiditate aliquid
-                quam, minima, commodi quasi, veritatis consequatur? Hic eius
-                debitis molestias repellendus tempore culpa.
-              </CardDescription>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full">
-                <MapPinIcon className="w-4 h-4 mr-2" />
-                Explore
-              </Button>
-            </CardFooter>
-          </Card>
+          {destinations0.map((destination) => {
+            if (destination.name === currentDestination) {
+              return (
+                <Card className="overflow-hidden" key={destination.name}>
+                  <img
+                    src={destination.image}
+                    alt={destination.name}
+                    width={400}
+                    height={300}
+                    className="object-cover w-full h-48"
+                  />
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>{destination.name}</span>
+                      <span className="flex items-center text-yellow-500">
+                        <StarIcon className="w-5 h-5 mr-1" />
+                        {destination.rating}
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>{destination.description}</CardDescription>
+                  </CardContent>
+                  <CardFooter>
+                    <Button className="w-full">
+                      <MapPinIcon className="w-4 h-4 mr-2" />
+                      Explore
+                    </Button>
+                  </CardFooter>
+                </Card>
+              );
+            }
+          })}
         </div>
       </div>
     </div>
