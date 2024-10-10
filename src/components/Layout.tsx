@@ -21,18 +21,16 @@ export default function Layout() {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "About", "Services", "Travel", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="hover:text-yellow-300 transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {["Home", "About", "Offer", "Contact"].map((item) => (
+                <li key={item}>
+                  <Link
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className="hover:text-yellow-300 transition-colors"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>

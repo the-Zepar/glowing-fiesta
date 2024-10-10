@@ -52,10 +52,9 @@ export default function Travel() {
       switch (currentDestination) {
         case "Lalibela":
           setDestinations([...destinations, ...["Addis Ababa", "Lalibela"]]);
-
           break;
-
         default:
+          setDestinations([...destinations]);
           break;
       }
       setActivities({ ...activities, [currentDestination]: [] });
