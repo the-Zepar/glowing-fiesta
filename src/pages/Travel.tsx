@@ -51,10 +51,13 @@ export default function Travel() {
     if (currentDestination && !destinations.includes(currentDestination)) {
       switch (currentDestination) {
         case "Lalibela":
-          setDestinations([...destinations, ...["Addis Ababa", "Lalibela"]]);
+          setDestinations([
+            ...destinations,
+            ...["Addis Ababa", "Wolega", "Lalibela"],
+          ]);
           break;
         default:
-          setDestinations([...destinations]);
+          setDestinations([...destinations, currentDestination]);
           break;
       }
       setActivities({ ...activities, [currentDestination]: [] });
@@ -271,7 +274,7 @@ export default function Travel() {
           {destinations0.map((destination) => {
             if (destinations.includes(destination.name)) {
               return (
-                <Card className="overflow-hidden" key={destination.name}>
+                <Card className="overflow-hidden my-2" key={destination.name}>
                   <img
                     src={destination.image}
                     alt={destination.name}
