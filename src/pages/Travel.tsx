@@ -36,24 +36,43 @@ export default function Travel() {
     setCurrentDestination(location.state);
   }, []);
   const addDestination = () => {
-    const desss = {
-      routes: [
-        ["Addis Ababa", "Lalibela"],
-        ["Lalibela", "Aksum"],
-        ["Aksum", "Simien Mountains National Park"],
-        ["Simien Mountains National Park", "Gondar"],
-        ["Gondar", "Lake Tana and Blue Nile Falls"],
-        ["Lake Tana and Blue Nile Falls", "Omo Valley"],
-        ["Omo Valley", "Danakil Depression"],
-        ["Danakil Depression", "Bale Mountains National Park"],
-      ],
-    };
     if (currentDestination && !destinations.includes(currentDestination)) {
       switch (currentDestination) {
         case "Lalibela":
+          setDestinations([...destinations, ...["Addis Ababa", "Lalibela"]]);
+
+          break;
+        case "Aksum":
+          setDestinations([...destinations, ...["Addis Ababa", "Aksum"]]);
+          break;
+        case "Simien Mountains National Park":
           setDestinations([
             ...destinations,
-            ...["Addis Ababa", "Wolega", "Lalibela"],
+            ...["Addis Ababa", "Simien Mountains National Park"],
+          ]);
+          break;
+        case "Gondar":
+          setDestinations([...destinations, ...["Addis Ababa", "Gondar"]]);
+          break;
+        case "Lake Tana and Blue Nile Falls":
+          setDestinations([
+            ...destinations,
+            ...["Addis Ababa", "Lake Tana and Blue Nile Falls"],
+          ]);
+          break;
+        case "Omo Valley":
+          setDestinations([...destinations, ...["Addis Ababa", "Omo Valley"]]);
+          break;
+        case "Danakil Depression":
+          setDestinations([
+            ...destinations,
+            ...["Addis Ababa", "Danakil Depression"],
+          ]);
+          break;
+        case "Bale Mountains National Park":
+          setDestinations([
+            ...destinations,
+            ...["Addis Ababa", "Bale Mountains National Park"],
           ]);
           break;
         default:
