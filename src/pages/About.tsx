@@ -24,8 +24,7 @@ export default function About() {
               About Ethio voyage
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Inspiring adventures and creating unforgettable memories since
-              2005.
+              Inspiring adventures and creating unforgettable memories.
             </p>
           </div>
         </div>

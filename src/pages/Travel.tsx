@@ -23,7 +23,7 @@ import { useEffect } from "react";
 
 export default function Travel() {
   const location = useLocation();
-
+  const [error, setError] = useState("");
   const [hotel, setHotel] = useState("");
   const [destinations, setDestinations] = useState<string[]>([]);
   const [currentDestination, setCurrentDestination] = useState("");
@@ -35,7 +35,13 @@ export default function Travel() {
   useEffect(() => {
     setCurrentDestination(location.state);
   }, []);
+  useEffect(() => {}, [currentDestination]);
   const addDestination = () => {
+    if (!hotel) {
+      setError("select hotel");
+      return;
+    }
+    if (hotel) setError("");
     if (currentDestination && !destinations.includes(currentDestination)) {
       switch (currentDestination) {
         case "Lalibela":
@@ -168,15 +174,24 @@ export default function Travel() {
             </label>
             <div className="flex items-center">
               <Hotel className="mr-2 text-gray-500" />
-              <input
-                type="text"
-                id="hotel"
+              <Select
+                onValueChange={(e) => {
+                  setHotel(e);
+                  if (hotel) setError("");
+                }}
                 value={hotel}
-                onChange={(e) => setHotel(e.target.value)}
-                className="flex-grow p-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
-                placeholder="Enter hotel name"
-              />
+              >
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Select Hotel" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={currentDestination + "hotel"}>
+                    {currentDestination + " " + "hotel"}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
+            {error && <p className="text-red-500">{error}</p>}
           </div>
           <div>
             <h2 className="block text-lg font-medium mb-2">Your Jounery</h2>
