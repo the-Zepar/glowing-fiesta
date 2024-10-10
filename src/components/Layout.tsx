@@ -15,7 +15,7 @@ export default function Layout() {
       <footer className="bg-gray-800 text-white p-8">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Wanderlust Adventures</h3>
+            <h3 className="text-xl font-bold mb-4">Ethio Voyage</h3>
             <p>Your gateway to unforgettable journeys</p>
           </div>
           <div>
@@ -37,14 +37,14 @@ export default function Layout() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-            <p>123 Adventure Street</p>
-            <p>Wanderlust City, WL 12345</p>
-            <p>Phone: (555) 123-4567</p>
-            <p>Email: info@wanderlustadventures.com</p>
+            <p>Addis Abeba</p>
+            <p>Ethio Voyage</p>
+            <p>Phone: (000) 000-0000</p>
+            <p>Email: info@EthioVoyage.com</p>
           </div>
         </div>
         <div className="mt-8 text-center">
-          <p>&copy; 2023 Wanderlust Adventures. All rights reserved.</p>
+          <p>&copy; Ethio Voyage. All rights reserved.</p>
         </div>
       </footer>
     </>

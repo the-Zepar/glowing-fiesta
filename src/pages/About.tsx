@@ -21,7 +21,7 @@ export default function About() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-              About Wanderlust Travel
+              About Ethio voyage
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
               Inspiring adventures and creating unforgettable memories since
@@ -46,10 +46,8 @@ export default function About() {
                 Our Story
               </h2>
               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Wanderlust Travel was born out of a passion for exploration and
-                a desire to make world travel accessible to everyone. Founded by
-                a group of avid travelers in 2005, we've grown from a small
-                startup to a leading name in the travel industry.
+                Ethio voyage was born out of a passion for exploration and a
+                desire to make world travel accessible to everyone.
               </p>
               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Our mission is to inspire, guide, and support travelers in their

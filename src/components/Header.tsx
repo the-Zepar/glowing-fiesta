@@ -100,7 +100,7 @@ function Header() {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
               <span className="font-bold whitespace-nowrap text-lg">
-                Travel
+                Ethio Voyage{" "}
               </span>
             </Link>
             <nav className="hidden md:flex items-center space-x-4 text-sm font-medium">

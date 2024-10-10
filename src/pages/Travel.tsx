@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PlusCircle, MinusCircle, MapPin, Hotel, Plane } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -14,11 +13,10 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { MapPinIcon, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import { destinations as destinations0 } from "@/constants";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -274,12 +272,6 @@ export default function Travel() {
                   <CardContent>
                     <CardDescription>{destination.description}</CardDescription>
                   </CardContent>
-                  <CardFooter>
-                    <Button className="w-full">
-                      <MapPinIcon className="w-4 h-4 mr-2" />
-                      Explore
-                    </Button>
-                  </CardFooter>
                 </Card>
               );
             }

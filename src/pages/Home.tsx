@@ -17,6 +17,7 @@ import {
   UtensilsIcon,
 } from "lucide-react";
 import { destinations } from "@/constants";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -202,6 +203,7 @@ function DestinationCard({
   image: string;
   description: string;
 }) {
+  const navigate = useNavigate();
   return (
     <Card className="overflow-hidden">
       <img
@@ -218,7 +220,11 @@ function DestinationCard({
         <p>{description}</p>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full">
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => navigate("/travel", { state: name })}
+        >
           Explore
         </Button>
       </CardFooter>
