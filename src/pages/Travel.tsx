@@ -36,8 +36,28 @@ export default function Travel() {
     setCurrentDestination(location.state);
   }, []);
   const addDestination = () => {
+    const desss = {
+      routes: [
+        ["Addis Ababa", "Lalibela"],
+        ["Lalibela", "Aksum"],
+        ["Aksum", "Simien Mountains National Park"],
+        ["Simien Mountains National Park", "Gondar"],
+        ["Gondar", "Lake Tana and Blue Nile Falls"],
+        ["Lake Tana and Blue Nile Falls", "Omo Valley"],
+        ["Omo Valley", "Danakil Depression"],
+        ["Danakil Depression", "Bale Mountains National Park"],
+      ],
+    };
     if (currentDestination && !destinations.includes(currentDestination)) {
-      setDestinations([...destinations, currentDestination]);
+      switch (currentDestination) {
+        case "Lalibela":
+          setDestinations([...destinations, ...["Addis Ababa", "Lalibela"]]);
+
+          break;
+
+        default:
+          break;
+      }
       setActivities({ ...activities, [currentDestination]: [] });
       setCurrentDestination("");
     }
@@ -250,7 +270,7 @@ export default function Travel() {
 
         <div className="sm:w-1/2">
           {destinations0.map((destination) => {
-            if (destination.name === currentDestination) {
+            if (destinations.includes(destination.name)) {
               return (
                 <Card className="overflow-hidden" key={destination.name}>
                   <img

@@ -179,8 +179,11 @@ function Header() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[180px] sm:w-[280px]">
                   <nav className="flex flex-col space-y-4 mt-8">
-                    <Link to="/products" className="text-lg font-medium">
-                      Products
+                    <Link to="/offers" className="text-lg font-medium">
+                      Offers
+                    </Link>
+                    <Link to="/destinations" className="text-lg font-medium">
+                      Destinations
                     </Link>
                     <Link to="/about" className="text-lg font-medium">
                       About
