@@ -20,8 +20,12 @@ import {
 } from "@/components/ui/card";
 import { MapPinIcon, StarIcon } from "lucide-react";
 import { destinations as destinations0 } from "@/constants";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Travel() {
+  const location = useLocation();
+
   const [hotel, setHotel] = useState("");
   const [destinations, setDestinations] = useState<string[]>([]);
   const [currentDestination, setCurrentDestination] = useState("");
@@ -30,7 +34,9 @@ export default function Travel() {
   const [selectedDestination, setSelectedDestination] = useState<string | null>(
     null
   );
-
+  useEffect(() => {
+    setCurrentDestination(location.state);
+  }, []);
   const addDestination = () => {
     if (currentDestination && !destinations.includes(currentDestination)) {
       setDestinations([...destinations, currentDestination]);
@@ -93,7 +99,10 @@ export default function Travel() {
                 placeholder="Enter a destination"
               /> */}
 
-              <Select onValueChange={(e) => setCurrentDestination(e)}>
+              <Select
+                onValueChange={(e) => setCurrentDestination(e)}
+                value={currentDestination}
+              >
                 <SelectTrigger className="w-full md:w-[180px]">
                   <SelectValue placeholder="Select Destination" />
                 </SelectTrigger>

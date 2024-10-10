@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { destinations } from "@/constants";
 import { MapPinIcon, StarIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import Fuse from "fuse.js";
 
@@ -37,6 +38,7 @@ const fuse = new Fuse(destinations, {
 export default function Destinations() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Destinations[]>([]);
+  useEffect(() => setSearchResults(destinations), []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -106,6 +108,7 @@ function DestinationCard({
   description: string;
   rating: number;
 }) {
+  const navigate = useNavigate();
   return (
     <Card className="overflow-hidden">
       <img
@@ -128,7 +131,10 @@ function DestinationCard({
         <CardDescription>{description}</CardDescription>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
+        <Button
+          className="w-full"
+          onClick={() => navigate("/travel", { state: name })}
+        >
           <MapPinIcon className="w-4 h-4 mr-2" />
           Explore
         </Button>

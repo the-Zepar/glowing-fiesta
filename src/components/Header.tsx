@@ -105,12 +105,6 @@ function Header() {
             </Link>
             <nav className="hidden md:flex items-center space-x-4 text-sm font-medium">
               <Link
-                to="/travel"
-                className="transition-colors hover:text-green-600"
-              >
-                Travel
-              </Link>
-              <Link
                 to="/about"
                 className="transition-colors hover:text-green-600"
               >
