@@ -116,14 +116,18 @@ function Component() {
                   </Select>
                 </div>
 
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => handleRemoveNode(node.id)}
-                  className="ml-2 text-red-500 p-1 rounded-full hover:bg-red-100 transition-colors"
-                >
-                  <MinusCircle size={20} />
-                </Button>
+                {index > 2 ? (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => handleRemoveNode(node.id)}
+                    className="ml-2 text-red-500 p-1 rounded-full hover:bg-red-100 transition-colors"
+                  >
+                    <MinusCircle size={20} />
+                  </Button>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="w-1/2 z-[-2] h-[2px] absolute top-1/2 left-1/4 -transform-y-1/2  bg-black"></div>
               <div className="mr-8">
@@ -139,11 +143,9 @@ function Component() {
                       <SelectValue placeholder="Select Destination" />
                     </SelectTrigger>
                     <SelectContent>
-                      {destinations0.map((destination) => (
-                        <SelectItem value={destination.name}>
-                          {destination.name}
-                        </SelectItem>
-                      ))}
+                      <SelectItem value={node.mainContent}>
+                        {node.mainContent + " " + "Hotel"}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -206,7 +208,7 @@ function Component() {
         ))}
       </div>
       <Button onClick={handleAddNode} className="mt-12 mx-auto flex">
-        <PlusCircledIcon className="mr-2 h-5 w-5" /> Add Destination
+        <PlusCircledIcon className="mr-2 h-5 w-5" /> Add More Destination
       </Button>
     </div>
   );
