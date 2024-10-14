@@ -85,6 +85,7 @@ export default function Destinations() {
                 image={destination.image}
                 description={destination.description}
                 rating={destination.rating}
+                destination={destination}
               />
             ))}
           </div>
@@ -102,11 +103,13 @@ function DestinationCard({
   image,
   description,
   rating,
+  destination,
 }: {
   name: string;
   image: string;
   description: string;
   rating: number;
+  destination: any;
 }) {
   const navigate = useNavigate();
   return (
@@ -133,7 +136,7 @@ function DestinationCard({
       <CardFooter>
         <Button
           className="w-full"
-          onClick={() => navigate("/travel", { state: name })}
+          onClick={() => navigate("destination", { state: destination })}
         >
           <MapPinIcon className="w-4 h-4 mr-2" />
           Explore

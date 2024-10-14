@@ -8,7 +8,7 @@ import { MoonIcon, SunIcon, MenuIcon, XIcon, SearchIcon } from "lucide-react";
 
 import Fuse from "fuse.js";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { destinations } from "@/constants";
 
 interface Destinations {
@@ -25,6 +25,7 @@ const fuse = new Fuse(destinations, {
 });
 
 function Header() {
+  const navigate = useNavigate();
   const { toggleTheme } = useTheme();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -227,6 +228,11 @@ function Header() {
                 {searchResults.length > 0 ? (
                   searchResults.map((product) => (
                     <Card
+                      onClick={() =>
+                        navigate("/destinations/destination", {
+                          state: product,
+                        })
+                      }
                       key={product.name}
                       className="bg-white/50 dark:bg-gray-800/50 shadow-lg hover:shadow-xl transition-shadow backdrop-blur-sm"
                     >

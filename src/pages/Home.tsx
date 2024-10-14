@@ -34,15 +34,6 @@ export default function Home() {
                 memories, and experience the world like never before.
               </p>
             </div>
-            <div className="w-full max-w-sm space-y-2">
-              <form className="flex space-x-2">
-                <Input
-                  className="flex-1"
-                  placeholder="Where do you want to go?"
-                />
-                <Button type="submit">Search</Button>
-              </form>
-            </div>
           </div>
         </div>
       </section>
@@ -59,6 +50,7 @@ export default function Home() {
                 name={destination.name}
                 image={destination.image}
                 description={destination.description}
+                destination={destination}
               />
             ))}
           </div>
@@ -198,10 +190,12 @@ function DestinationCard({
   name,
   image,
   description,
+  destination,
 }: {
   name: string;
   image: string;
   description: string;
+  destination: any;
 }) {
   const navigate = useNavigate();
   return (
@@ -223,7 +217,9 @@ function DestinationCard({
         <Button
           variant="outline"
           className="w-full"
-          onClick={() => navigate("/travel", { state: name })}
+          onClick={() =>
+            navigate("/destinations/destination", { state: destination })
+          }
         >
           Explore
         </Button>
